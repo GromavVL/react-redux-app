@@ -1,0 +1,25 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  count: 0,
+  step: 1,
+};
+
+const counterSlice = createSlice({
+  initialState,
+  name: "counter",
+  reducers: {
+    increment: (state) => {
+      state.count = state.count + state.step;
+    },
+    decrement: (state) => {
+      state.count = state.count - state.step;
+    },
+    setStep: (state, action) => {
+      state.step = action.payload;
+    },
+  },
+});
+
+export const { increment, decrement, setStep } = counterSlice.actions;
+export default counterSlice.reducer;
