@@ -1,26 +1,12 @@
-const initialState = {
-  count: 0,
-  step: 1,
-};
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./slice/counterSlice";
+import themeReducer from "./slice/themeSlice";
 
-function counterReducer(state = initialState, action) {
-  const { type } = action;
-  switch (type) {
-    case "INCREMENT": {
-      const { step, count } = state;
-      return { ...state, count: count + step };
-    }
-    case "DECREMENT": {
-      const { step, count } = state;
-      return { ...state, count: count - step };
-    }
-    case "SET_STEP": {
-      return { ...state, step: action.payload };
-    }
-    default: {
-      return state;
-    }
-  }
-}
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+    theme: themeReducer,
+  },
+});
 
-export default counterReducer;
+export default store;
